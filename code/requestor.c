@@ -6,7 +6,7 @@
 #define REQ_ERR     2
 
 #define LOCAL_URL         "http://localhost:8000"
-#define URL         "http://192.168.0.26:8000"
+#define URL         "http://192.168.211.134:8000"
 
 int main() {
     printf("Start libcurl example\n");
