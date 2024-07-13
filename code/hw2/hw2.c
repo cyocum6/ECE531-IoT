@@ -1,5 +1,6 @@
-// Chris Yocum
-// June 20, 2024
+// Chris Yocum - June 20, 2024
+// make -f makefile-gcc
+// make -f makefile-arm
 #include <stdio.h>
 #include <argp.h>
 #include <stdbool.h>

@@ -1,0 +1,28 @@
+# ./makefile-arm-sd
+# make with         make -f makefile-arm-sd             in the buildroot folder
+# ls -alh          shows the details, long form in readable format, sizes of files
+BUILDROOT_HOME=/home/iottemp/Documents/VirtualMachines/buildroot-2024.02.3
+
+CC=$(BUILDROOT_HOME)/output/host/usr/bin/arm-linux-gcc
+CFLAGS=--sysroot=$(BUILDROOT_HOME)/output/staging
+INCLUDES=
+LFLAGS=
+
+LIBS=-uClibc -lc
+
+SRC=printer.c 
+OBJ=$(SRC:.c=.o)
+STATIC_MAIN=test-print-s 
+DYNAMIC_MAIN=test-print-d 
+
+RM=rm -rf
+
+.c.o:
+    $(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+all: $(OBJ)
+    $(CC) $(CFLAGS) -static $(INCLUDES) -o $(STATIC_MAIN) $(OBJ) $(LFLAGS) $(LIBS)
+    $(CC) $(CFLAGS) $(INCLUDES) -o $(DYNAMIC_MAIN) $(OBJ) $(LFLAGS) $(LIBS)
+
+clean:
+    $(RM) $(STATIC_MAIN) $(DYNAMIC_MAIN) *.o *~
